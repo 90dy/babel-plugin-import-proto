@@ -1,0 +1,40 @@
+{
+  "name": "babel-plugin-import-proto",
+  "version": "1.0.0",
+  "description": "Import your protobuf definitions directly in Javascript",
+  "main": "build/index.js",
+  "files": [
+    "build"
+  ],
+  "keywords": [
+    "babel-plugin",
+    "grpc",
+    "protobuf",
+    "import",
+    "extension",
+    "inline"
+  ],
+  "repository": "https://github.com/gponsinet/babel-plugin-import-proto",
+  "author": "Godefroy Ponsinet",
+  "license": "MIT",
+  "engines": {
+    "npm": ">= 7.0.0",
+    "node": ">= 14.0.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "prepare": "babel src --out-dir build"
+  },
+  "peerDependencies": {
+    "@babel/core": "^7.12.3",
+    "@grpc/grpc-js": "^1.1.7",
+    "@grpc/proto-loader": "^0.5.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/eslint-parser": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "jest": "^26.5.3"
+  }
+}
