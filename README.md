@@ -5,17 +5,16 @@
 # babel-plugin-import-proto
 
 Babel plugin enabling `import` syntax for `.proto` files.
+The result import is the combination of [@grpc/proto-loader](npmjs.com/package/@grpc/proto-loader) and [@grpc/grpc-js](npmjs.com/package/@grpc/grpc-js).
 
 ## Prerequisites
 
-```bash
-yarn add @babel/core
-```
+Install [@babel/core](https://www.npmjs.com/package/@babel/core)
 
 ## Install
 
 ```
-yarn add -D babel-plugin-import-proto
+npm install -D babel-plugin-import-proto
 ```
 
 In `.babelrc`
@@ -27,3 +26,40 @@ In `.babelrc`
 ```
 
 Each time you modify a Protobuf file, the cache must be cleared for the changes to take effect.
+
+## Options
+
+| Option | Type | Default | Description
+|------------|--------------|------------
+| `keepCase` | `Boolean` | `false` | Preserve field names. The default is to change them to camel case.
+| `longs` | `'String' | 'Number' | 'Long'` | `'String'` | The constructor name of type to use to represent `long` values.
+| `enums` | `'String' | 'Number'` | `'String'` | The constructor name of type to use to represent `enum` values.
+| `bytes` | `'String' | 'Array' | 'Buffer'` | `'String'` | The constructor name of type to use to represent `bytes` values.
+| `defaults` | `Boolean` | `false` | Set default values on output objects.
+| `arrays` | `Boolean` | `false` | Set empty arrays for missing array values even if `defaults` is `false`.
+| `objects` | `Boolean` | `false` | Set empty objects for missing object values even if `defaults` is `false`.
+| `oneofs` | `Boolean` | `false` | Set virtual oneof properties to the present field's name.
+| `includeDirs` | `Array<String>` | `[]` | A list of search paths for imported `.proto` files.
+
+## Examples
+
+```js
+import { test } from './test/fixtures/example.proto'
+import grpc from 'grpc'
+
+// server.js
+const server = new grpc.Server()
+server.addProtoService(test.fixture.exampleService.service, new ExampleServiceServerImplem())
+server.bind('0.0.0.0:50051', grpc.ServerCredentials.createInsecure())
+server.start()
+
+// client.js
+const client = new test.fixture.exampleService('localhost:50051', grpc.credentials.createInsecure())
+client.getExampleEntity({ id: 0 }, function (err, feature) {
+  if (err) {
+    // do something
+  } else {
+    // do something
+  }
+})
+```

@@ -16,9 +16,9 @@ export default function (api) {
         }
         const importOptions = {
           keepCase: false,
-          longs: 'Long',
-          enums: 'Number',
-          bytes: 'Buffer',
+          longs: 'Number',
+          enums: 'String',
+          bytes: 'String',
           defaults: false,
           arrays: false,
           objects: false,
