@@ -5,11 +5,13 @@
 # babel-plugin-import-proto
 
 Babel plugin enabling `import` syntax for `.proto` files.
-The result import is the combination of [@grpc/proto-loader](npmjs.com/package/@grpc/proto-loader) and [@grpc/grpc-js](npmjs.com/package/@grpc/grpc-js).
 
 ## Prerequisites
 
-Install [@babel/core](https://www.npmjs.com/package/@babel/core)
+```
+npm install -D @babel/core @grpc/proto-loader
+npm install @grpc/grpc-js
+```
 
 ## Install
 
@@ -29,12 +31,12 @@ Each time you modify a Protobuf file, the cache must be cleared for the changes 
 
 ## Options
 
-| Option | Type | Default | Description
-|------------|--------------|------------
+| Option | Type | Default | Description |
+|---|---|---|---
 | `keepCase` | `Boolean` | `false` | Preserve field names. The default is to change them to camel case.
-| `longs` | `'String' | 'Number' | 'Long'` | `'String'` | The constructor name of type to use to represent `long` values.
-| `enums` | `'String' | 'Number'` | `'String'` | The constructor name of type to use to represent `enum` values.
-| `bytes` | `'String' | 'Array' | 'Buffer'` | `'String'` | The constructor name of type to use to represent `bytes` values.
+| `longs` | `'String'` or `'Number'` or `'Long'` | `'Number'` | The constructor name of type to use to represent `long` values.
+| `enums` | `'String'` or `'Number'` | `'String'` | The constructor name of type to use to represent `enum` values.
+| `bytes` | `'String'` or `'Array'` or `'Buffer'` | `'String'` | The constructor name of type to use to represent `bytes` values.
 | `defaults` | `Boolean` | `false` | Set default values on output objects.
 | `arrays` | `Boolean` | `false` | Set empty arrays for missing array values even if `defaults` is `false`.
 | `objects` | `Boolean` | `false` | Set empty objects for missing object values even if `defaults` is `false`.
@@ -55,7 +57,7 @@ server.start()
 
 // client.js
 const client = new test.fixture.exampleService('localhost:50051', grpc.credentials.createInsecure())
-client.getExampleEntity({ id: 0 }, function (err, feature) {
+client.getExampleEntity({ id: 0 }, function (err, exampleEntity) {
   if (err) {
     // do something
   } else {
