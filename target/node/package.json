@@ -1,0 +1,18 @@
+{
+  "name": "@target/node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "babel-node index.js"
+  },
+  "author": "Godefroy Ponsinet",
+  "license": "MIT",
+  "dependencies": {
+    "@example/client": "*",
+    "@example/server": "*"
+  },
+  "devDependencies": {
+    "@babel/node": "^7.12.1"
+  }
+}
