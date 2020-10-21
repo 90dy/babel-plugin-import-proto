@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package test.fixture;
+
+import "google/protobuf/timestamp.proto";
+
+message BasicEntity {
+  uint64 id = 1;
+  google.protobuf.Timestamp created_at = 2;
+  google.protobuf.Timestamp updated_at = 3;
+  google.protobuf.Timestamp deleted_at = 4; 
+  string name = 5;
+}
+
+message GetBasicEntityRequest {
+  uint64 id = 1;
+}
+
+message GetBasicEntityResponse {
+  BasicEntity example_entity = 1;
+}
+
+message SubBasicEntityRequest {
+  uint64 id = 1;
+}
+
+message SubBasicEntityResponse {
+  BasicEntity example_entity = 1;
+}
+
+message PubBasicEntityRequest {
+  BasicEntity example_entity = 1;
+}
+
+message PubBasicEntityResponse {
+  uint64 id = 1;
+}
+
+service BasicService {
+  rpc GetBasicEntity(GetBasicEntityRequest) returns (GetBasicEntityResponse);
+  rpc SubBasicEntity(SubBasicEntityRequest) returns (stream SubBasicEntityResponse);
+  rpc PubBasicEntity(stream PubBasicEntityRequest) returns (PubBasicEntityResponse);
+}

@@ -26,17 +26,17 @@ const defaultOptions = {
 }
 
 describe.each([{ longs: 'String' }])('plugin options = %j', opts => {
-  describe('example.proto', () => {
+  describe('basic.proto', () => {
     test('specifier', () => {
-      const { code } = transformWithPlugin('./fixture/example/specifier.js', opts)
+      const { code } = transformWithPlugin('./fixture/basic/specifier.js', opts)
       eval(code)
     })
     test('default', () => {
-      const { code } = transformWithPlugin('./fixture/example/default.js', opts)
+      const { code } = transformWithPlugin('./fixture/basic/default.js', opts)
       eval(code)
     })
     test('no-specifier', () => {
-      const { code } = transformWithPlugin('./fixture/example/no-specifier.js', opts)
+      const { code } = transformWithPlugin('./fixture/basic/no-specifier.js', opts)
       eval(code)
     })
   })
