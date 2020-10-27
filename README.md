@@ -47,7 +47,7 @@ Each time you modify a Protobuf file, the cache must be cleared for the changes 
 
 ```js
 import { test } from './test/fixtures/example.proto'
-import grpc from 'grpc'
+import grpc from '@grpc/grpc-js'
 
 // server.js
 const server = new grpc.Server()
